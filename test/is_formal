@@ -1,0 +1,34 @@
+import re
+
+def is_formal(sentence):
+    # Check for formal language features
+    if len(sentence.split()) > 10 and re.search(r'\b(?:therefore|moreover|nevertheless)\b', sentence):
+        return True
+    else:
+        return False
+
+def is_informal(sentence):
+    # Check for informal language features
+    if len(sentence.split()) < 10 and re.search(r'\b(?:yeah|gonna|wanna)\b', sentence):
+        return True
+    else:
+        return False
+
+# Example usage
+sentence = "Therefore it is imperative that we consider all available options before making a decision."
+if is_formal(sentence):
+    print("Formal")
+else:
+    print("Informal")
+
+sentence = "Requirement already satisfied."
+if is_informal(sentence):
+    print("Informal")
+else:
+    print("Formal")
+
+sentence = "Women mature way faster than men and some men never mature."
+if is_informal(sentence):
+    print("Informal")
+else:
+    print("Formal")
