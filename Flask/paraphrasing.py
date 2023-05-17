@@ -2,6 +2,7 @@ from flask import jsonify
 from nltk.tokenize import sent_tokenize
 import random
 import nltk.data
+import torch
 import docx2txt
 import PyPDF2
 import os
@@ -26,6 +27,8 @@ torch_device = 'cpu'
 tokenizer = PegasusTokenizer.from_pretrained(model_name)
 model = PegasusForConditionalGeneration.from_pretrained(model_name).to(torch_device)
 
+
+#setting up the model
 def get_response(input_text,num_return_sequences,num_beams=10):
   batch = tokenizer([input_text],truncation=True,padding='longest',max_length=60, return_tensors="pt").to(torch_device)
   translated = model.generate(**batch,max_length=60,num_beams=num_beams, num_return_sequences=num_return_sequences, temperature=1.5)
@@ -46,9 +49,12 @@ def paraphrase(text):
 @app.route('/paraphrasing', methods=['POST'])
 def phrase():
     sen = request.get_json()
+    print(sen['data'])
     pem = sen['data']
+    print (pem)
     text = paraphrase(pem)
-    ata = {'text': text}
+    print (text)
+    ata = {'name':text}
     return jsonify(ata)
 
 if __name__ == '__main__':
