@@ -4,6 +4,7 @@ import random
 import nltk.data
 import docx2txt
 import PyPDF2
+import torch
 import os
 import warnings
 warnings.filterwarnings("ignore")
