@@ -2,7 +2,6 @@ from flask import jsonify
 from nltk.tokenize import sent_tokenize
 import random
 import nltk.data
-import torch
 import docx2txt
 import PyPDF2
 import os
@@ -47,12 +46,9 @@ def paraphrase(text):
 @app.route('/paraphrasing', methods=['POST'])
 def phrase():
     sen = request.get_json()
-    print(sen['data'])
     pem = sen['data']
-    print (pem)
     text = paraphrase(pem)
-    print (text)
-    ata = {'name':text}
+    ata = {'text': text}
     return jsonify(ata)
 
 if __name__ == '__main__':
