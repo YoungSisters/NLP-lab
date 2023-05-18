@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 from nltk import tokenize
 from joblib import load
 from warnings import simplefilter
@@ -19,7 +13,7 @@ app = Flask(__name__)
 def formality_check():
     text = request.json['data']
     pipeline_validated = load("/home/ubuntu/NLP-lab/Flask/raw_nb.jbl")
-    formality_bool = pipeline_validated.predict(text)
+    formality_bool = pipeline_validated.predict([text])
     if formality_bool==0:
         formality = 'Formal'
     else:
@@ -28,16 +22,3 @@ def formality_check():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5002)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
