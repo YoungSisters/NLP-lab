@@ -26,7 +26,6 @@ torch_device = 'cpu'
 tokenizer = PegasusTokenizer.from_pretrained(model_name)
 model = PegasusForConditionalGeneration.from_pretrained(model_name).to(torch_device)
 
-
 #setting up the model
 def get_response(input_text,num_return_sequences,num_beams=10):
   batch = tokenizer([input_text],truncation=True,padding='longest',max_length=60, return_tensors="pt").to(torch_device)
