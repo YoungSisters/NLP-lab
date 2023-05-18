@@ -46,11 +46,8 @@ def paraphrase(text):
 @app.route('/paraphrasing', methods=['POST'])
 def phrase():
     sen = request.get_json()
-    print(sen['data'])
     pem = sen['data']
-    print (pem)
     text = paraphrase(pem)
-    print (text)
     ata = {'text':text}
     return jsonify(ata)
 
