@@ -1,8 +1,8 @@
 from flask import Flask, request
 from flask import Flask, jsonify, redirect, render_template, request, url_for
-
 import re
 import nltk
+nltk.download('wordnet')
 from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem import WordNetLemmatizer
