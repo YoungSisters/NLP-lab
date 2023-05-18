@@ -1,4 +1,5 @@
-from flask import jsonify
+from flask import Flask, jsonify, redirect, render_template, request, url_for
+from http import HTTPStatus
 from nltk.tokenize import sent_tokenize
 import random
 import nltk.data
@@ -17,9 +18,18 @@ from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 from sentence_splitter import SentenceSplitter, split_text_into_sentences
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
-text=""
 
+@app.route('/paraphrasing', methods=['POST'])
+def phrase():
+    sen = request.get_json()
+    pem = sen['data']
+    print (pem)
+    text = paraphrase(pem)
+    print (text)
+    ata = {'text':text}
+    return jsonify(ata)
+
+text=""
 a=''
 model_name = 'tuner007/pegasus_paraphrase'
 torch_device = 'cpu'
@@ -42,14 +52,6 @@ def paraphrase(text):
     for i in paraphrase:
         output=output+i[0]+" "
     return output
-
-@app.route('/paraphrasing', methods=['POST'])
-def phrase():
-    sen = request.get_json()
-    pem = sen['data']
-    text = paraphrase(pem)
-    ata = {'text':text}
-    return jsonify(ata)
 
 if __name__ == '__main__':
    app.run(host="0.0.0.0", port=5002)
