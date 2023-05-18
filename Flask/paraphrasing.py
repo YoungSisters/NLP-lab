@@ -3,6 +3,7 @@ from http import HTTPStatus
 from nltk.tokenize import sent_tokenize
 import random
 import nltk.data
+nltk.download('punkt')
 import torch
 import docx2txt
 import PyPDF2
