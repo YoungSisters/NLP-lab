@@ -17,7 +17,6 @@ from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 from sentence_splitter import SentenceSplitter, split_text_into_sentences
 
 app = Flask(__name__)
-app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 text=""
 
