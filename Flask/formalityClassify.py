@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/formality', methods=['POST'])
 def formality_check():
     text = request.json['data']
-    pipeline_validated = load("/home/ubuntu/NLP-lab/Flask/raw_nb.jbl")
+    pipeline_validated = load("/home/ubuntu/NLP-lab/Flask/formality.h5")
     formality_bool = pipeline_validated.predict([text])
     if formality_bool==0:
         formality = 'Formal'
