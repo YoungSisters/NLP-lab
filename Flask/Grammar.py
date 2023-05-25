@@ -471,15 +471,11 @@ def grammar():
     sentence = content['text']
 
     suggestions = a.grammar_check(sentence)
-    return jsonify({"text: suggestions})
+    return jsonify({"text": suggestions})
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
-
-
-# In[ ]:
-
+    app.run(host='0.0.0.0', port=5252)
 
 
 
