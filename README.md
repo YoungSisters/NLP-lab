@@ -25,7 +25,7 @@ AI 기반 영어 말하기 분석 애플리케이션 **👑** **SpeaKing 👑**
 
 - Client: Swift(iOS)
 - Server: django, SQLite 및 AWS를 사용한 배포 
-- NLP: GBert
+- NLP: BERT, LSTM, LR, NLTK
 
 ## 🎙 팀원 소개
 
@@ -38,18 +38,16 @@ AI 기반 영어 말하기 분석 애플리케이션 **👑** **SpeaKing 👑**
 
 - [레포지토리](https://github.com/YoungSisters/client-lab)
 
-## 🎙 Formal and Informal English Classification
+## 🎙 사용된 기술/기능
 
-formalityClassification.ipynb에 formal/informal sentence classification 실험이 모두 담겨있다.
+BERT: 사용자의 발화에서 격식적과 비격식적 표현을 구분하기 위해 BERT 기반의 모델을 활용했습니다. 이 모델은 문맥에 맞는 적절한 표현을 평가하여, 사용자가 말한 내용이 격식에 맞는지 확인하고, 비격식적인 표현은 그에 맞는 격식 있는 형태로 변환할 수 있도록 지원합니다.
 
-jupyter notebook, Colab 등 자신이 편한 환경에서 ipynb 파일을 실행하면 굳이 코드를 돌리지 않아도 실행결과를 볼 수 있지만 만약 직접 실행을 원한다면 data와 feature 파일들 또한 download하여 데이터를 불러오는 경로를 수정해주고 실행하면 된다.
+LSTM: Written Text를 Spoken Text로 변환하는 데 LSTM(Long Short-Term Memory) 모델을 사용했습니다.
 
-텍스트 분류의 목적은 텍스트 문서를 다른 미리 정의된 클래스로 분류하는 것이다. English에서 formal(격식체) 텍스트와 informal(비격식체) 텍스트의 분류에 대한 발표된 연구는 거의 없다. 특히나 Speaking에 관한 것은 전무하다. spoken 텍스트 형식 분류에 대한 체계적인 연구는 아직까지 찾아볼 수 없기 때문에 텍스트의 formality나 informality에 어떤 핵심 요소가 기여하는지 알아보고 텍스트 스타일을 바꿀 수 있는 몇 가지 아이디어와 해결책을 찾아내는 것이 주목적이다. 모델의 개념은 스타트 학기 종료 후 수정 및 후속 연구가 가능하도록 구성하려고 노력하였다. formal/informal data에서 feature들을 추출하고 각 data에 대해 원하는 기능을 추출한 후 계층화된 k-폴드 교차 검증으로 모델을 훈련하고 검증했다. 그 후, RFECV (Recursive Feature Elimination with Cross Validation) 방법으로 formal 텍스트와 informal 텍스트를 구별할 때 feature의 subset이 필수적인지 알아보기 위해 특징을 조사한다.
+OpenAI API: GPT-3기반 text-davinci-003 모델을 사용하여 문법 수정 및 피드백 제공 기능을 향상시켰습니다.
 
-## 🎙 Word Frequency Count
+ETRI 발음 평가 API: 사용자의 발음 정확도를 평가하기 위해 ETRI 발음 평가 API를 통합하여, 발음 정확도를 체크하는 데 사용했습니다.
 
-wordFrequency.ipynb에 단어빈도수를 구하는 소스코드가 담겨있다. include_stopwords 파일은 불용어를 제거하지 않았을 때의 결과 파일이다.
 
-마찬가지로 ipynb 파일로 굳이 코드를 돌리지 않아도 실행결과를 볼 수 있지만 만약 직접 실행을 원한다면 sample 파일을 download하여 데이터를 불러오는 경로를 수정하면 된다.
 
-NLTK 라이브러리를 이용하였고 주석을 통해 단계를 구별했다.
+
